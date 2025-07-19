@@ -20,11 +20,9 @@ Unlock the full potential of Scriptify AI with the **Pro Plan** — ideal for cr
 
 ---
 
-### 💳 Upgrade Now:
-[Click here to upgrade via Stripe](https://buy.stripe.com/...)  
-*(Replace this with your actual Stripe payment link)*
+# ### 💳 Upgrade Now: 
 
----
+# ---
 
-🔒 Payments are securely processed via Stripe. Your Pro access will be instantly activated and valid for **30 days**.
-""")
+# 🔒 Payments are securely processed Your Pro access will be instantly activated and valid for **30 days**.
+# """)
