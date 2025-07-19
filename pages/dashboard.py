@@ -74,7 +74,7 @@ else:
 
         st.markdown(f"---\n### {script['topic']} — `{script['timestamp']}`")
         if script.get("refined"):
-            st.markdown("**Refined Script**")
+            st.markdown("✅ **Refined Script**")
 
         st.code(script['script'], language="markdown")
 
@@ -104,16 +104,19 @@ else:
             txt_bytes = io.BytesIO(script['script'].encode("utf-8"))
             st.download_button("TXT", data=txt_bytes, file_name="script.txt", mime="text/plain", key=f"txt-{script['timestamp']}")
 
-        # --- Delete Button ---
         with col4:
-            if st.button("Delete", key=f"delete-{script['timestamp']}"):
-                docs = (
-                    db.collection("scripts")
-                    .where("user_email", "==", st.session_state["user_email"])
-                    .where("timestamp", "==", script["timestamp"])
-                    .stream()
-                )
-                for doc in docs:
-                    doc.reference.delete()
-                st.success("Script deleted. Refresh to see changes.")
-                st.experimental_rerun()
+            delete_key = f"delete-{script['timestamp']}"
+            if st.button("🗑️ Delete", key=delete_key):
+                try:
+                    docs = (
+                        db.collection("scripts")
+                        .where("user_email", "==", st.session_state["user_email"])
+                        .where("timestamp", "==", script["timestamp"])
+                        .stream()
+                    )
+                    for doc in docs:
+                        doc.reference.delete()
+                    st.success("Script deleted successfully.")
+                    st.rerun()  # ✅ rerun immediately after deletion
+                except Exception as e:
+                    st.error(f"Failed to delete script: {e}")
