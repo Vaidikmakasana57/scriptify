@@ -106,7 +106,7 @@ else:
 
         with col4:
             delete_key = f"delete-{script['timestamp']}"
-            if st.button("🗑️ Delete", key=delete_key):
+            if st.button("Delete", key=delete_key):
                 try:
                     docs = (
                         db.collection("scripts")
