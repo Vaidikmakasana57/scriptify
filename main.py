@@ -8,7 +8,7 @@ with col1:
     st.image("logo.png", width=60)
 
 with col2:
-    st.markdown("## 🤖 Welcome to Scriptify AI!")
+    st.markdown("## Welcome to Scriptify AI!")
 
 st.write("""
 Navigate using the sidebar:
