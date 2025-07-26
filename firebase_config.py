@@ -3,15 +3,13 @@ from firebase_admin import credentials, firestore
 from datetime import datetime, timedelta
 import streamlit as st
 
-# ✅ Initialize Firebase App (from Streamlit secrets)
 if not firebase_admin._apps:
     cred = credentials.Certificate(dict(st.secrets["firebase"]))
     firebase_admin.initialize_app(cred)
 
-# ✅ Firestore client
 db = firestore.client()
 
-# ✅ Save a generated script
+# Save a generated script
 def save_script(user_email, topic, platform, tone, audience, content):
     db.collection('scripts').add({
         'user_email': user_email,
@@ -23,7 +21,7 @@ def save_script(user_email, topic, platform, tone, audience, content):
         'timestamp': datetime.utcnow()
     })
 
-# ✅ Get scripts (latest first)
+# Get scripts (latest first)
 def get_user_scripts(user_email):
     query = (
         db.collection('scripts')
@@ -42,7 +40,7 @@ def get_user_scripts(user_email):
         for doc in query.stream()
     ]
 
-# ✅ Check daily usage (skip if Pro)
+# Check daily usage (skip if Pro)
 def check_and_increment_usage(user_email, daily_limit=3, increment=True):
     user_ref = db.collection('users').document(user_email)
     user_doc = user_ref.get()
@@ -51,7 +49,7 @@ def check_and_increment_usage(user_email, daily_limit=3, increment=True):
     if user_doc.exists:
         data = user_doc.to_dict()
 
-        # ✅ Skip limit if Pro and not expired
+        # Skip limit if Pro and not expired
         if data.get("is_pro") and is_user_pro(user_email):
             return True, float("inf")
 
@@ -83,7 +81,7 @@ def check_and_increment_usage(user_email, daily_limit=3, increment=True):
     remaining = daily_limit - usage_today
     return True, remaining
 
-# ✅ Delete scripts older than 30 days
+#  Delete scripts older than 30 days
 def delete_old_scripts():
     cutoff = datetime.utcnow() - timedelta(days=30)
     old_scripts = db.collection('scripts').where('timestamp', '<', cutoff).stream()
@@ -93,7 +91,7 @@ def delete_old_scripts():
         count += 1
     print(f"🧹 Deleted {count} old scripts.")
 
-# ✅ Upgrade to Pro with 30-day expiry
+# Upgrade to Pro with 30-day expiry
 def upgrade_to_pro(user_email):
     expiry = (datetime.utcnow() + timedelta(days=30)).date().isoformat()
     db.collection("users").document(user_email).set({
@@ -101,7 +99,7 @@ def upgrade_to_pro(user_email):
         "pro_expiry": expiry
     }, merge=True)
 
-# ✅ Check if user is Pro and not expired
+# Check if user is Pro and not expired
 def is_user_pro(user_email):
     doc = db.collection("users").document(user_email).get()
     if not doc.exists:
@@ -121,12 +119,11 @@ def is_user_pro(user_email):
 
     return True
 
-# ✅ Get full user info
+# Get full user info
 def get_user_info(user_email):
     doc = db.collection("users").document(user_email).get()
     return doc.to_dict() if doc.exists else {}
 
-# ✅ Save feedback to Firestore
 def save_feedback(user_email, feedback_text):
     db.collection("feedback").add({
         "user_email": user_email,
