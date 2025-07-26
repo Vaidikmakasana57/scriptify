@@ -32,9 +32,9 @@ def query_together(prompt):
     try:
         response = requests.post(API_URL, headers=headers, json=payload, timeout=30)
         response.raise_for_status()
-        return response.json().get("choices", [{}])[0].get("text", "⚠️ No response from model.")
+        return response.json().get("choices", [{}])[0].get("text", "No response from model.")
     except Exception as e:
-        return f"⚠️ Error contacting Together API: {e}"
+        return f"Error contacting Together API: {e}"
 
 # ------------- LOGIN -------------
 st.title("🎬 Scriptify AI")
@@ -118,7 +118,7 @@ if st.button("Generate Script"):
     if not st.session_state["is_pro"]:
         allowed, remaining = check_and_increment_usage(st.session_state["user_email"])
         if not allowed:
-            st.warning("🚫 Daily limit reached (20). Upgrade to Pro for unlimited access.")
+            st.warning("Daily limit reached (20). Upgrade to Pro for unlimited access.")
             st.stop()
 
     with st.spinner("Generating your script..."):
@@ -183,14 +183,14 @@ if st.session_state["script"]:
                 save_script(st.session_state["user_email"], topic + " (Refined)", platform, tone, audience, refined)
 
 # ------------- SUPPORT -------------
-st.sidebar.markdown("💬 Have Feedback?")
+st.sidebar.markdown("Have Feedback?")
 with st.sidebar.form("feedback_form"):
     feedback = st.text_area("Tell us what you think:")
-    submit = st.form_submit_button("📩 Submit")
+    submit = st.form_submit_button("Submit")
     if submit and feedback.strip():
         save_feedback(st.session_state.get("user_email", "Anonymous"), feedback.strip())
-        st.success("✅ Thanks for your feedback!")
+        st.success("Thanks for your feedback!")
     elif submit:
-        st.warning("⚠️ Please write something before submitting.")
+        st.warning("Please write something before submitting.")
 
 
