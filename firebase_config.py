@@ -43,7 +43,7 @@ def get_user_scripts(user_email):
     ]
 
 # ✅ Check daily usage (skip if Pro)
-def check_and_increment_usage(user_email, daily_limit=20, increment=True):
+def check_and_increment_usage(user_email, daily_limit=3, increment=True):
     user_ref = db.collection('users').document(user_email)
     user_doc = user_ref.get()
     today_str = datetime.utcnow().date().isoformat()
