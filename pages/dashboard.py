@@ -5,7 +5,7 @@ from fpdf import FPDF
 from docx import Document
 import io
 
-st.set_page_config(page_title="📜 Scriptify AI | Dashboard", layout="centered")
+st.set_page_config(page_title="Scriptify AI | Dashboard", layout="centered")
 st.title("Your Scripts Dashboard")
 
 # ------------------ LOGIN ------------------
@@ -52,7 +52,7 @@ if is_user_pro(st.session_state["user_email"]):
     st.session_state["pro_user"] = True
     st.markdown("**Pro Plan Activated** — Enjoy unlimited access!")
 else:
-    if st.button("✨ Upgrade to Pro"):
+    if st.button("Upgrade to Pro"):
         upgrade_to_pro(st.session_state["user_email"])
         st.session_state["pro_user"] = True
         st.success("You're now a Pro user with unlimited access!")
@@ -74,7 +74,7 @@ else:
 
         st.markdown(f"---\n### {script['topic']} — `{script['timestamp']}`")
         if script.get("refined"):
-            st.markdown("✅ **Refined Script**")
+            st.markdown("**Refined Script**")
 
         st.code(script['script'], language="markdown")
 
@@ -117,6 +117,6 @@ else:
                     for doc in docs:
                         doc.reference.delete()
                     st.success("Script deleted successfully.")
-                    st.rerun()  # ✅ rerun immediately after deletion
+                    st.rerun() 
                 except Exception as e:
                     st.error(f"Failed to delete script: {e}")
