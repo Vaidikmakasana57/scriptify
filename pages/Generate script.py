@@ -96,7 +96,7 @@ if user_doc.exists:
 # ------------- Usage Limit (Free Users) -------------
 if not st.session_state.get("is_pro"):
     _, remaining = check_and_increment_usage(st.session_state["user_email"], increment=False)
-    st.info(f"Remaining scripts today: **{remaining}/20**")
+    st.info(f"Remaining scripts today: **{remaining}/3**")
 
 # ------------- INPUT FORM -------------
 st.header("Generate Your Script")
