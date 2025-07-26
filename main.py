@@ -1,12 +1,18 @@
 import streamlit as st
 
 st.set_page_config(page_title="Scriptify AI", layout="centered")
-st.image("logo.png", width=150)
-st.title("🤖 Welcome to Scriptify AI!")
+
+col1, col2 = st.columns([1, 6])
+
+with col1:
+    st.image("logo.png", width=60)
+
+with col2:
+    st.markdown("## 🤖 Welcome to Scriptify AI!")
 
 st.write("""
 Navigate using the sidebar:
-- Generate a Script
-- Dashboard (View your scripts)
+- Generate a Script  
+- Dashboard (View your scripts)  
 - Upgrade to Pro
 """)
