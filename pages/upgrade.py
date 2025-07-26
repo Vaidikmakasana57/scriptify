@@ -1,7 +1,7 @@
 # upgrade.py
 import streamlit as st
 
-st.set_page_config(page_title="🚀 Upgrade to Pro", layout="centered")
+st.set_page_config(page_title="Upgrade to Pro", layout="centered")
 
 st.title("💎 Upgrade to Scriptify AI Pro")
 
@@ -10,19 +10,19 @@ Unlock the full potential of Scriptify AI with the **Pro Plan** — ideal for cr
 
 ---
 
-### ✅ **Pro Plan Includes**:
-- 🚫 **Unlimited Script Generation** – No daily limits
-- 📝 **Export Scripts** – Download in **PDF**, **DOCX**, or **TXT**
-- 🎨 **Advanced Tone & Style** – Extra tone options like *Casual*, *Inspirational*, *Bold*
-- 🛠️ **AI Script Refinement Tool** – Instantly polish your scripts with custom suggestions
-- 📁 **Script Organization** – Manage scripts by **folders/projects** *(coming soon)*
-- ⚡ **Priority Support** – Get help faster via email support
+### **Pro Plan Includes**:
+- **Unlimited Script Generation** – No daily limits
+- **Export Scripts** – Download in **PDF**, **DOCX**, or **TXT**
+- **Advanced Tone & Style** – Extra tone options like *Casual*, *Inspirational*, *Bold*
+- **AI Script Refinement Tool** – Instantly polish your scripts with custom suggestions
+- **Script Organization** – Manage scripts by **folders/projects** *(coming soon)*
+- **Priority Support** – Get help faster via email support
 
 ---
 
-# ### 💳 Upgrade Now: 
+ ### Upgrade Now: 
 
-# ---
+ ---
 
-# 🔒 Payments are securely processed Your Pro access will be instantly activated and valid for **30 days**.
-# """)
+ Payments are securely processed Your Pro access will be instantly activated and valid for **30 days**.
+ """)
